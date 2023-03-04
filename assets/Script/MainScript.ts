@@ -134,8 +134,9 @@ export default class MainScript extends cc.Component {
         if (value == 5)
         {
             this.currentPlayerScript.EnableCollisionManager(false, true);
+            this.currentPlayerScript.node.children[0].color = cc.Color.BLUE;
             cc.tween(this.currentPlayerScript.node.children[0]).to(5, ({opacity:0})).start();
-            this.scheduleOnce(()=>{this.currentPlayerScript.EnableCollisionManager(true, false)}, 5);
+            this.scheduleOnce(()=>{this.currentPlayerScript.EnableCollisionManager(true, false)}, 10);
         }
     }
 

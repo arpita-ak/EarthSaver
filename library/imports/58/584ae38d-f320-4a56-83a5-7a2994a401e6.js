@@ -111,8 +111,9 @@ var MainScript = /** @class */ (function (_super) {
         // protection for 5 seconds when you destroy enemy 3
         if (value == 5) {
             this.currentPlayerScript.EnableCollisionManager(false, true);
+            this.currentPlayerScript.node.children[0].color = cc.Color.BLUE;
             cc.tween(this.currentPlayerScript.node.children[0]).to(5, ({ opacity: 0 })).start();
-            this.scheduleOnce(function () { _this.currentPlayerScript.EnableCollisionManager(true, false); }, 5);
+            this.scheduleOnce(function () { _this.currentPlayerScript.EnableCollisionManager(true, false); }, 10);
         }
     };
     MainScript.prototype.getNewEnemyPosition = function () {

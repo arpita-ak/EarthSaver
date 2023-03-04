@@ -68,6 +68,7 @@ var PlayerController = /** @class */ (function (_super) {
         manager.enabled = flag;
         this.node.children[0].active = protect;
         this.node.children[0].opacity = 100;
+        this.node.children[0].color = cc.Color.GREEN;
     };
     PlayerController.prototype.OnTouchStart = function (_event) {
         //console.log('Start');

@@ -59,6 +59,7 @@ export class PlayerController extends cc.Component {
         manager.enabled = flag;
         this.node.children[0].active = protect;
         this.node.children[0].opacity = 100;
+        this.node.children[0].color = cc.Color.GREEN;
     }
 
     OnTouchStart(_event: cc.Event.EventTouch)

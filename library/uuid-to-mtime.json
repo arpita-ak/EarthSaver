@@ -580,8 +580,8 @@
     "relativePath": "Script\\WeaponController1.ts"
   },
   "5487ee89-3b88-45aa-ba04-dd7d14c48251": {
-    "asset": 1677943994873,
-    "meta": 1677943994881,
+    "asset": 1677944393287,
+    "meta": 1677944393296,
     "relativePath": "Prefabs\\player.prefab"
   },
   "fc81ae3f-840e-4f72-9210-225fe8f03b43": {
@@ -665,18 +665,18 @@
     "relativePath": "Script\\EnemyController3.ts"
   },
   "2d2f792f-a40c-49bb-a189-ed176a246e49": {
-    "asset": 1677944082244,
-    "meta": 1677944082255,
+    "asset": 1677944531220,
+    "meta": 1677944531236,
     "relativePath": "Scene\\EarthSaver.fire"
   },
   "642f116c-10d8-4ed8-b82b-b4f23fafcedf": {
-    "asset": 1677943993505,
-    "meta": 1677943994561,
+    "asset": 1677944390271,
+    "meta": 1677944390851,
     "relativePath": "Script\\PlayerController.ts"
   },
   "584ae38d-f320-4a56-83a5-7a2994a401e6": {
-    "asset": 1677944083207,
-    "meta": 1677944084193,
+    "asset": 1677944527142,
+    "meta": 1677944528904,
     "relativePath": "Script\\MainScript.ts"
   }
 }
