@@ -40,6 +40,8 @@ var PlayerController = /** @class */ (function (_super) {
         //@property(cc.Node)
         _this.weaponParent = null;
         _this.weapon1 = null;
+        _this.shootAudio = null;
+        _this.playerDeadAudio = null;
         _this.offsetPos = cc.v3(0, 0, 0);
         _this.delta = 0;
         return _this;
@@ -92,7 +94,7 @@ var PlayerController = /** @class */ (function (_super) {
         this.weaponParent.convertToNodeSpaceAR(worldpos, pos);
         newfire.setPosition(pos);
         newfire.angle = 0;
-        //audioEngine.playEffect(this.laserAudio, false); // Shoot audio
+        cc.audioEngine.playEffect(this.shootAudio, false); // Shoot audio
     };
     PlayerController.prototype.onCollisionEnter = function (other, self) {
         var _this = this;
@@ -104,6 +106,7 @@ var PlayerController = /** @class */ (function (_super) {
             _this.game.OnPlayerDead();
         }).start();
         console.log("Player is dead");
+        cc.audioEngine.playEffect(this.playerDeadAudio, false);
     };
     PlayerController.prototype.start = function () {
     };
@@ -112,6 +115,12 @@ var PlayerController = /** @class */ (function (_super) {
     __decorate([
         property(cc.Prefab)
     ], PlayerController.prototype, "weapon1", void 0);
+    __decorate([
+        property({ type: cc.AudioClip })
+    ], PlayerController.prototype, "shootAudio", void 0);
+    __decorate([
+        property({ type: cc.AudioClip })
+    ], PlayerController.prototype, "playerDeadAudio", void 0);
     PlayerController = __decorate([
         ccclass
     ], PlayerController);

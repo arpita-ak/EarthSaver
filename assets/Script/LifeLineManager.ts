@@ -46,7 +46,7 @@ export default class LifeLineManager extends cc.Component {
 
     DecreaseLifeLine()
     {
-        if (this.CurrentLifelines)
+        if (this.CurrentLifelines!=0)
         {
             this.CurrentLifelines -= 1;
             this.node.children[0].destroy();

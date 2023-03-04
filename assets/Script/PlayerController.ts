@@ -20,6 +20,12 @@ export class PlayerController extends cc.Component {
     @property(cc.Prefab)
     weapon1: cc.Prefab = null;
 
+    @property({type: cc.AudioClip})
+    shootAudio: cc.AudioClip = null;
+
+    @property({type: cc.AudioClip})
+    playerDeadAudio: cc.AudioClip = null;
+
     protected offsetPos: cc.Vec3 = cc.v3(0, 0, 0);
     protected delta: number = 0;
 
@@ -90,7 +96,7 @@ export class PlayerController extends cc.Component {
 
         newfire.setPosition(pos);
         newfire.angle = 0;
-        //audioEngine.playEffect(this.laserAudio, false); // Shoot audio
+        cc.audioEngine.playEffect(this.shootAudio, false); // Shoot audio
     }
 
     onCollisionEnter(other, self) 
@@ -105,6 +111,7 @@ export class PlayerController extends cc.Component {
         }).start();
 
         console.log("Player is dead");
+        cc.audioEngine.playEffect(this.playerDeadAudio, false);
     }
 
     start() 

@@ -59,7 +59,7 @@ var LifeLineManager = /** @class */ (function (_super) {
         }
     };
     LifeLineManager.prototype.DecreaseLifeLine = function () {
-        if (this.CurrentLifelines) {
+        if (this.CurrentLifelines != 0) {
             this.CurrentLifelines -= 1;
             this.node.children[0].destroy();
             this.node.getComponent(cc.Layout).updateLayout();

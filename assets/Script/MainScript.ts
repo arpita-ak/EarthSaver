@@ -35,6 +35,15 @@ export default class MainScript extends cc.Component {
     @property(LifeLineManager)
     lifeLineManager: LifeLineManager = null;
 
+    @property(cc.Toggle)
+    Music: cc.Toggle = null;
+
+    @property({type: cc.AudioClip})
+    bgmAudio: cc.AudioClip = null;
+
+    @property({type: cc.AudioClip})
+    clickAudio: cc.AudioClip = null;
+
     score: number = 0;
     highScore: number = 0;
 
@@ -65,7 +74,7 @@ export default class MainScript extends cc.Component {
 
         // generate player
         let newPlayer = cc.instantiate(this.playerPrefab)
-        this.node.addChild(newPlayer);
+        this.node.getChildByName("player").addChild(newPlayer);
 
         let playerControllerScript = newPlayer.getComponent(PlayerController);
         playerControllerScript.weaponParent = this.node.getChildByName("weapon");
@@ -73,6 +82,12 @@ export default class MainScript extends cc.Component {
 
         // generate 2 enemies every second
         this.schedule(this.spawnNewRound, 0.5, cc.macro.REPEAT_FOREVER, 0);
+
+        // start music
+        cc.audioEngine.playMusic(this.bgmAudio, true);
+        cc.audioEngine.playEffect(this.clickAudio, false);
+        this.onVolumeToggleClicked();
+
     }
 
     spawnNewRound()
@@ -110,11 +125,14 @@ export default class MainScript extends cc.Component {
         {
             // restart 
             this.unschedule(this.spawnNewRound);
-            this.node.getChildByName("enemies").children.forEach(e=>(e.destroy()));
+            this.node.getChildByName("enemies").destroyAllChildren();
+            this.node.getChildByName("player").destroyAllChildren();
 
             this.restartScreen.active = true;
             this.restartScreen.getChildByName("Score_value").getComponent(cc.Label).string = this.score.toString();
             this.restartScreen.getChildByName("highScore_value").getComponent(cc.Label).string = this.highScore.toString();
+            
+            cc.audioEngine.stopMusic();
         }
         else
         {
@@ -122,7 +140,7 @@ export default class MainScript extends cc.Component {
             
             // generate player  
             let newPlayer = cc.instantiate(this.playerPrefab)
-            this.node.addChild(newPlayer);
+            this.node.getChildByName("player").addChild(newPlayer);
 
             let playerControllerScript = newPlayer.getComponent(PlayerController);
             playerControllerScript.weaponParent = this.node.getChildByName("weapon");
@@ -138,6 +156,20 @@ export default class MainScript extends cc.Component {
     update (dt) 
     {
 
+    }
+
+    onVolumeToggleClicked()
+    {
+        if (this.Music.isChecked)
+        {
+            cc.audioEngine.setEffectsVolume(0);
+            cc.audioEngine.setMusicVolume(0);
+        }
+        else
+        {
+            cc.audioEngine.setEffectsVolume(0.1);
+            cc.audioEngine.setMusicVolume(1);
+        }
     }
 
 }

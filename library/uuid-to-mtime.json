@@ -485,18 +485,18 @@
     "relativePath": "Scene"
   },
   "4734c20c-0db8-4eb2-92ea-e692f4d70934": {
-    "asset": 1677874273089,
+    "asset": 1677936095836,
     "meta": 1629975690778,
     "relativePath": "Script"
   },
   "7b81d4e8-ec84-4716-968d-500ac1d78a54": {
-    "asset": 1677911496377,
+    "asset": 1677933318127,
     "meta": 1629975690778,
     "relativePath": "Texture"
   },
   "2d2f792f-a40c-49bb-a189-ed176a246e49": {
-    "asset": 1677933944246,
-    "meta": 1677933944261,
+    "asset": 1677940010082,
+    "meta": 1677940010096,
     "relativePath": "Scene\\helloworld.fire"
   },
   "a8027877-d8d6-4645-97a0-52d4a0123dba": {
@@ -555,7 +555,7 @@
     "relativePath": "Texture\\bg.jpg"
   },
   "cba78d39-86d5-4fa1-b585-9c7e85b53066": {
-    "asset": 1677875419206,
+    "asset": 1677930963061,
     "meta": 1677870994738,
     "relativePath": "Prefabs"
   },
@@ -585,8 +585,8 @@
     "relativePath": "Script\\WeaponController1.ts"
   },
   "5487ee89-3b88-45aa-ba04-dd7d14c48251": {
-    "asset": 1677933437345,
-    "meta": 1677933437356,
+    "asset": 1677939753877,
+    "meta": 1677939753886,
     "relativePath": "Prefabs\\player.prefab"
   },
   "95ffe9f2-ba3e-4415-bbbb-c5fe15786170": {
@@ -599,24 +599,59 @@
     "meta": 1677930963061,
     "relativePath": "Prefabs\\playerLifelineIcon.prefab"
   },
-  "a781e56b-a435-4753-9180-78174f808db8": {
-    "asset": 1677931927534,
-    "meta": 1677931936792,
-    "relativePath": "Script\\LifeLineManager.ts"
-  },
-  "584ae38d-f320-4a56-83a5-7a2994a401e6": {
-    "asset": 1677931936204,
-    "meta": 1677931936826,
-    "relativePath": "Script\\MainScript.ts"
-  },
   "30c7f3e6-68c8-4fd4-907d-c915be47d983": {
     "asset": 1677933316096,
     "meta": 1677933318152,
     "relativePath": "Texture\\singleColor - circle.png"
   },
+  "a781e56b-a435-4753-9180-78174f808db8": {
+    "asset": 1677934799013,
+    "meta": 1677934846598,
+    "relativePath": "Script\\LifeLineManager.ts"
+  },
+  "fa519902-4a40-43e9-9cf3-36e1f0ea9a78": {
+    "asset": 1677937249604,
+    "meta": 1677937249605,
+    "relativePath": "audios"
+  },
+  "73306f00-a8e4-4a8d-b606-684edb6ee628": {
+    "asset": 1677937299192,
+    "meta": 1677937299202,
+    "relativePath": "audios\\shoot.mp3"
+  },
+  "2b67bc3f-a0a9-4ae4-a5bd-bdb62a4df445": {
+    "asset": 1677937311937,
+    "meta": 1677937360722,
+    "relativePath": "audios\\dead.wav"
+  },
+  "8bfd64c6-3f30-4218-83ab-5a9e9945560f": {
+    "asset": 1677938956002,
+    "meta": 1677938960333,
+    "relativePath": "Texture\\singleColor - no sound.png"
+  },
+  "ded89ad6-eae2-45d8-8b49-3f067a18b869": {
+    "asset": 1677939019050,
+    "meta": 1677939021433,
+    "relativePath": "Texture\\music.png"
+  },
+  "3246ed11-bdc1-46ce-9337-c09898015d10": {
+    "asset": 1677939271526,
+    "meta": 1677939271546,
+    "relativePath": "audios\\bgm.mp3"
+  },
   "642f116c-10d8-4ed8-b82b-b4f23fafcedf": {
-    "asset": 1677933841673,
-    "meta": 1677933842931,
+    "asset": 1677939789341,
+    "meta": 1677939904936,
     "relativePath": "Script\\PlayerController.ts"
+  },
+  "32b3e098-c2a1-443e-9bc8-b3c808507b3f": {
+    "asset": 1677939905945,
+    "meta": 1677939909122,
+    "relativePath": "audios\\click.mp3"
+  },
+  "584ae38d-f320-4a56-83a5-7a2994a401e6": {
+    "asset": 1677939957864,
+    "meta": 1677939959392,
+    "relativePath": "Script\\MainScript.ts"
   }
 }

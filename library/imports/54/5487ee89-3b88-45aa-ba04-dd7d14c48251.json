@@ -263,6 +263,12 @@
     "weapon1": {
       "__uuid__": "7a12b044-a5d5-422e-9ad8-7eeb346c9175"
     },
+    "shootAudio": {
+      "__uuid__": "73306f00-a8e4-4a8d-b606-684edb6ee628"
+    },
+    "playerDeadAudio": {
+      "__uuid__": "2b67bc3f-a0a9-4ae4-a5bd-bdb62a4df445"
+    },
     "_id": ""
   },
   {

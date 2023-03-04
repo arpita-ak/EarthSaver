@@ -43,6 +43,9 @@ var MainScript = /** @class */ (function (_super) {
         _this.scoreDisplay = null;
         _this.highscoreDisplay = null;
         _this.lifeLineManager = null;
+        _this.Music = null;
+        _this.bgmAudio = null;
+        _this.clickAudio = null;
         _this.score = 0;
         _this.highScore = 0;
         return _this;
@@ -67,12 +70,16 @@ var MainScript = /** @class */ (function (_super) {
         this.highscoreDisplay.string = this.highScore.toString();
         // generate player
         var newPlayer = cc.instantiate(this.playerPrefab);
-        this.node.addChild(newPlayer);
+        this.node.getChildByName("player").addChild(newPlayer);
         var playerControllerScript = newPlayer.getComponent(PlayerController_1.PlayerController);
         playerControllerScript.weaponParent = this.node.getChildByName("weapon");
         playerControllerScript.game = this;
         // generate 2 enemies every second
         this.schedule(this.spawnNewRound, 0.5, cc.macro.REPEAT_FOREVER, 0);
+        // start music
+        cc.audioEngine.playMusic(this.bgmAudio, true);
+        cc.audioEngine.playEffect(this.clickAudio, false);
+        this.onVolumeToggleClicked();
     };
     MainScript.prototype.spawnNewRound = function () {
         var newRound = cc.instantiate(this.EnemyPrefab);
@@ -99,16 +106,18 @@ var MainScript = /** @class */ (function (_super) {
         if (this.lifeLineManager.CurrentLifelines == 0) {
             // restart 
             this.unschedule(this.spawnNewRound);
-            this.node.getChildByName("enemies").children.forEach(function (e) { return (e.destroy()); });
+            this.node.getChildByName("enemies").destroyAllChildren();
+            this.node.getChildByName("player").destroyAllChildren();
             this.restartScreen.active = true;
             this.restartScreen.getChildByName("Score_value").getComponent(cc.Label).string = this.score.toString();
             this.restartScreen.getChildByName("highScore_value").getComponent(cc.Label).string = this.highScore.toString();
+            cc.audioEngine.stopMusic();
         }
         else {
             //continue
             // generate player  
             var newPlayer = cc.instantiate(this.playerPrefab);
-            this.node.addChild(newPlayer);
+            this.node.getChildByName("player").addChild(newPlayer);
             var playerControllerScript = newPlayer.getComponent(PlayerController_1.PlayerController);
             playerControllerScript.weaponParent = this.node.getChildByName("weapon");
             playerControllerScript.game = this;
@@ -117,6 +126,16 @@ var MainScript = /** @class */ (function (_super) {
     MainScript.prototype.start = function () {
     };
     MainScript.prototype.update = function (dt) {
+    };
+    MainScript.prototype.onVolumeToggleClicked = function () {
+        if (this.Music.isChecked) {
+            cc.audioEngine.setEffectsVolume(0);
+            cc.audioEngine.setMusicVolume(0);
+        }
+        else {
+            cc.audioEngine.setEffectsVolume(0.1);
+            cc.audioEngine.setMusicVolume(1);
+        }
     };
     __decorate([
         property(cc.Node)
@@ -139,6 +158,15 @@ var MainScript = /** @class */ (function (_super) {
     __decorate([
         property(LifeLineManager_1.default)
     ], MainScript.prototype, "lifeLineManager", void 0);
+    __decorate([
+        property(cc.Toggle)
+    ], MainScript.prototype, "Music", void 0);
+    __decorate([
+        property({ type: cc.AudioClip })
+    ], MainScript.prototype, "bgmAudio", void 0);
+    __decorate([
+        property({ type: cc.AudioClip })
+    ], MainScript.prototype, "clickAudio", void 0);
     MainScript = __decorate([
         ccclass
     ], MainScript);
