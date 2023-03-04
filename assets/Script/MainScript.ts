@@ -24,6 +24,12 @@ export default class MainScript extends cc.Component {
     EnemyPrefab: cc.Prefab = null;
 
     @property(cc.Prefab)
+    EnemyPrefab2: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    EnemyPrefab3: cc.Prefab = null;
+
+    @property(cc.Prefab)
     playerPrefab : cc.Prefab = null;
 
     @property(cc.Label)
@@ -48,6 +54,7 @@ export default class MainScript extends cc.Component {
     highScore: number = 0;
 
     // LIFE-CYCLE CALLBACKS:
+    currentPlayerScript: PlayerController = null;
 
     onLoad () 
     {
@@ -76,9 +83,9 @@ export default class MainScript extends cc.Component {
         let newPlayer = cc.instantiate(this.playerPrefab)
         this.node.getChildByName("player").addChild(newPlayer);
 
-        let playerControllerScript = newPlayer.getComponent(PlayerController);
-        playerControllerScript.weaponParent = this.node.getChildByName("weapon");
-        playerControllerScript.game = this;
+        this.currentPlayerScript = newPlayer.getComponent(PlayerController);
+        this.currentPlayerScript.weaponParent = this.node.getChildByName("weapon");
+        this.currentPlayerScript.game = this;
 
         // generate 2 enemies every second
         this.schedule(this.spawnNewRound, 0.5, cc.macro.REPEAT_FOREVER, 0);
@@ -93,20 +100,43 @@ export default class MainScript extends cc.Component {
     spawnNewRound()
     {
         let newRound = cc.instantiate(this.EnemyPrefab);
+        let enemyControllerScript = newRound.getComponent('EnemyController1')
+
+        // different enemy who needs 3 fire to die
+        if (this.score%5 == 0 && this.score != 0) 
+        {
+            newRound = cc.instantiate(this.EnemyPrefab2);
+            enemyControllerScript = newRound.getComponent('EnemyController2')
+        }
+
+        // different enemy who needs 5 fire to die AND EXPANDS
+        if (this.score%5 == 0 && this.score > 30) 
+        {
+            newRound = cc.instantiate(this.EnemyPrefab3);
+            enemyControllerScript = newRound.getComponent('EnemyController3')
+        }
+
         this.node.getChildByName("enemies").addChild(newRound);
         newRound.setPosition(this.getNewEnemyPosition()); 
 
-        let enemyControllerScript = newRound.getComponent('EnemyController1')
         enemyControllerScript.game = this;
         enemyControllerScript.deltaRotation = Math.random();
     }
 
-    gainScore() 
+    gainScore(value: number) 
     {
         // Update the words of the scoreDisplay Label
-        this.score += 1;
+        this.score += value;
         this.scoreDisplay.string = this.score.toString();
         this.restartScreen.getChildByName("Score_value").getComponent(cc.Label).string = this.score.toString();
+
+        // protection for 5 seconds when you destroy enemy 3
+        if (value == 5)
+        {
+            this.currentPlayerScript.EnableCollisionManager(false, true);
+            cc.tween(this.currentPlayerScript.node.children[0]).to(5, ({opacity:0})).start();
+            this.scheduleOnce(()=>{this.currentPlayerScript.EnableCollisionManager(true, false)}, 5);
+        }
     }
 
     getNewEnemyPosition() 
@@ -142,9 +172,9 @@ export default class MainScript extends cc.Component {
             let newPlayer = cc.instantiate(this.playerPrefab)
             this.node.getChildByName("player").addChild(newPlayer);
 
-            let playerControllerScript = newPlayer.getComponent(PlayerController);
-            playerControllerScript.weaponParent = this.node.getChildByName("weapon");
-            playerControllerScript.game = this;
+            this.currentPlayerScript = newPlayer.getComponent(PlayerController);
+            this.currentPlayerScript.weaponParent = this.node.getChildByName("weapon");
+            this.currentPlayerScript.game = this;
         }
     }
 

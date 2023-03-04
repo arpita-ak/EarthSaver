@@ -58,6 +58,7 @@ export class PlayerController extends cc.Component {
         let manager = this.node.getComponent(cc.BoxCollider);
         manager.enabled = flag;
         this.node.children[0].active = protect;
+        this.node.children[0].opacity = 100;
     }
 
     OnTouchStart(_event: cc.Event.EventTouch)

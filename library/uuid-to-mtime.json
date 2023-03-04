@@ -494,11 +494,6 @@
     "meta": 1629975690778,
     "relativePath": "Texture"
   },
-  "2d2f792f-a40c-49bb-a189-ed176a246e49": {
-    "asset": 1677940010082,
-    "meta": 1677940010096,
-    "relativePath": "Scene\\helloworld.fire"
-  },
   "a8027877-d8d6-4645-97a0-52d4a0123dba": {
     "asset": 1629975690778,
     "meta": 1677867664718,
@@ -570,8 +565,8 @@
     "relativePath": "Prefabs\\weapon1.prefab"
   },
   "60a099eb-cdff-4be0-8794-9a0ae280eff8": {
-    "asset": 1677878152370,
-    "meta": 1677878152407,
+    "asset": 1677941714955,
+    "meta": 1677941714963,
     "relativePath": "Prefabs\\enemy1.prefab"
   },
   "078cd5e4-e57c-4f9b-b350-6b5336ca27f7": {
@@ -585,14 +580,9 @@
     "relativePath": "Script\\WeaponController1.ts"
   },
   "5487ee89-3b88-45aa-ba04-dd7d14c48251": {
-    "asset": 1677939753877,
-    "meta": 1677939753886,
+    "asset": 1677943994873,
+    "meta": 1677943994881,
     "relativePath": "Prefabs\\player.prefab"
-  },
-  "95ffe9f2-ba3e-4415-bbbb-c5fe15786170": {
-    "asset": 1677929556594,
-    "meta": 1677929558464,
-    "relativePath": "Script\\EnemyController1.ts"
   },
   "fc81ae3f-840e-4f72-9210-225fe8f03b43": {
     "asset": 1677930963055,
@@ -639,19 +629,54 @@
     "meta": 1677939271546,
     "relativePath": "audios\\bgm.mp3"
   },
-  "642f116c-10d8-4ed8-b82b-b4f23fafcedf": {
-    "asset": 1677939789341,
-    "meta": 1677939904936,
-    "relativePath": "Script\\PlayerController.ts"
-  },
   "32b3e098-c2a1-443e-9bc8-b3c808507b3f": {
     "asset": 1677939905945,
     "meta": 1677939909122,
     "relativePath": "audios\\click.mp3"
   },
+  "4a20f1bd-691a-46dc-84c8-e045f7206cd5": {
+    "asset": 1677942250469,
+    "meta": 1677942250480,
+    "relativePath": "Prefabs\\enemy2.prefab"
+  },
+  "943eef84-d6e6-4b31-b1d4-62beb83e38e8": {
+    "asset": 1677942979743,
+    "meta": 1677942979751,
+    "relativePath": "Prefabs\\enemy3.prefab"
+  },
+  "bc9e8f15-b558-445d-b5e4-b0a766969260": {
+    "asset": 1677940514999,
+    "meta": 1677940527541,
+    "relativePath": "Prefabs\\enemy4.prefab"
+  },
+  "95ffe9f2-ba3e-4415-bbbb-c5fe15786170": {
+    "asset": 1677942519217,
+    "meta": 1677942520541,
+    "relativePath": "Script\\EnemyController1.ts"
+  },
+  "136cea1e-9225-44bd-b426-22d963fd59c4": {
+    "asset": 1677943561219,
+    "meta": 1677943628551,
+    "relativePath": "Script\\EnemyController2.ts"
+  },
+  "65363b79-7a92-480b-b764-9f5ec0f70c6a": {
+    "asset": 1677943558867,
+    "meta": 1677943628569,
+    "relativePath": "Script\\EnemyController3.ts"
+  },
+  "2d2f792f-a40c-49bb-a189-ed176a246e49": {
+    "asset": 1677944082244,
+    "meta": 1677944082255,
+    "relativePath": "Scene\\EarthSaver.fire"
+  },
+  "642f116c-10d8-4ed8-b82b-b4f23fafcedf": {
+    "asset": 1677943993505,
+    "meta": 1677943994561,
+    "relativePath": "Script\\PlayerController.ts"
+  },
   "584ae38d-f320-4a56-83a5-7a2994a401e6": {
-    "asset": 1677939957864,
-    "meta": 1677939959392,
+    "asset": 1677944083207,
+    "meta": 1677944084193,
     "relativePath": "Script\\MainScript.ts"
   }
 }

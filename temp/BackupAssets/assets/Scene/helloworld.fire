@@ -3210,6 +3210,9 @@
     "EnemyPrefab": {
       "__uuid__": "60a099eb-cdff-4be0-8794-9a0ae280eff8"
     },
+    "EnemyPrefab2": {
+      "__uuid__": "4a20f1bd-691a-46dc-84c8-e045f7206cd5"
+    },
     "playerPrefab": {
       "__uuid__": "5487ee89-3b88-45aa-ba04-dd7d14c48251"
     },

@@ -46,8 +46,9 @@ var EnemyController1 = /** @class */ (function (_super) {
     };
     EnemyController1.prototype.onCollisionEnter = function (other, self) {
         var _this = this;
-        cc.tween(this.node).to(0.2, ({ scale: 0 })).call(function () { _this.node.destroy(); }).start();
-        this.game.gainScore();
+        //cc.tween(this.node.getChildByName("score")).to(0.1, ({scale:1})).start();
+        cc.tween(this.node).to(0.3, ({ scale: 0 })).call(function () { _this.node.destroy(); }).start();
+        this.game.gainScore(1);
     };
     EnemyController1.prototype.start = function () {
     };

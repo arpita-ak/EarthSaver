@@ -25,8 +25,9 @@ export default class EnemyController1 extends cc.Component
 
     onCollisionEnter(other, self) 
     {
-        cc.tween(this.node).to(0.2, ({scale:0})).call(()=>{this.node.destroy();}).start();
-        this.game.gainScore();
+        //cc.tween(this.node.getChildByName("score")).to(0.1, ({scale:1})).start();
+        cc.tween(this.node).to(0.3, ({scale:0})).call(()=>{this.node.destroy();}).start();
+        this.game.gainScore(1);
     }
 
     start () 
@@ -39,5 +40,6 @@ export default class EnemyController1 extends cc.Component
         // move down and rotate positive
         this.node.y -= dt * Math.random() * 500 * this.deltaRotation;
         this.node.angle += dt * this.deltaRotation * 500;
+
     }
 }

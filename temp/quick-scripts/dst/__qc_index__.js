@@ -11,6 +11,8 @@
                     function __define (exports, require, module) {
                         if (!nodeEnv) {__quick_compile_project__.registerModule(__filename, module);}
 require('./assets/Script/EnemyController1');
+require('./assets/Script/EnemyController2');
+require('./assets/Script/EnemyController3');
 require('./assets/Script/LifeLineManager');
 require('./assets/Script/MainScript');
 require('./assets/Script/PlayerController');
