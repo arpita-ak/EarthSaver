@@ -29,16 +29,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var LifeLineManager_1 = require("./LifeLineManager");
+var PlayerController_1 = require("./PlayerController");
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
 var MainScript = /** @class */ (function (_super) {
     __extends(MainScript, _super);
     function MainScript() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.startScreen = null;
+        _this.restartScreen = null;
         _this.EnemyPrefab = null;
-        _this.player = null;
+        _this.playerPrefab = null;
         _this.scoreDisplay = null;
         _this.highscoreDisplay = null;
+        _this.lifeLineManager = null;
         _this.score = 0;
         _this.highScore = 0;
         return _this;
@@ -48,28 +52,67 @@ var MainScript = /** @class */ (function (_super) {
         this.score = 0;
         this.highScore = 0;
         this.scoreDisplay.string = '0';
+        this.startScreen.active = true;
     };
     MainScript.prototype.OnStartClick = function () {
         this.startScreen.active = false;
+        this.restartScreen.active = false;
+        //update life lines 
+        this.lifeLineManager.restart();
+        //update score and highscore
+        if (this.score > this.highScore)
+            this.highScore = this.score;
+        this.score = 0;
+        this.scoreDisplay.string = this.score.toString();
+        this.highscoreDisplay.string = this.highScore.toString();
+        // generate player
+        var newPlayer = cc.instantiate(this.playerPrefab);
+        this.node.addChild(newPlayer);
+        var playerControllerScript = newPlayer.getComponent(PlayerController_1.PlayerController);
+        playerControllerScript.weaponParent = this.node.getChildByName("weapon");
+        playerControllerScript.game = this;
         // generate 2 enemies every second
         this.schedule(this.spawnNewRound, 0.5, cc.macro.REPEAT_FOREVER, 0);
     };
     MainScript.prototype.spawnNewRound = function () {
         var newRound = cc.instantiate(this.EnemyPrefab);
-        this.node.addChild(newRound);
+        this.node.getChildByName("enemies").addChild(newRound);
         newRound.setPosition(this.getNewEnemyPosition());
-        newRound.getComponent('EnemyController1').game = this;
+        var enemyControllerScript = newRound.getComponent('EnemyController1');
+        enemyControllerScript.game = this;
+        enemyControllerScript.deltaRotation = Math.random();
     };
     MainScript.prototype.gainScore = function () {
         // Update the words of the scoreDisplay Label
         this.score += 1;
         this.scoreDisplay.string = this.score.toString();
+        this.restartScreen.getChildByName("Score_value").getComponent(cc.Label).string = this.score.toString();
     };
     MainScript.prototype.getNewEnemyPosition = function () {
         var randX = Math.random() * Math.random() * 2 * (this.node.width / 2 - 20) - 250;
         var randY = Math.random() * Math.random() * 5 * (this.node.height / 2 - 200) + 200;
-        console.log(randX, randY);
+        //console.log(randX,randY);
         return cc.v2(randX, randY);
+    };
+    MainScript.prototype.OnPlayerDead = function () {
+        this.lifeLineManager.DecreaseLifeLine();
+        if (this.lifeLineManager.CurrentLifelines == 0) {
+            // restart 
+            this.unschedule(this.spawnNewRound);
+            this.node.getChildByName("enemies").children.forEach(function (e) { return (e.destroy()); });
+            this.restartScreen.active = true;
+            this.restartScreen.getChildByName("Score_value").getComponent(cc.Label).string = this.score.toString();
+            this.restartScreen.getChildByName("highScore_value").getComponent(cc.Label).string = this.highScore.toString();
+        }
+        else {
+            //continue
+            // generate player  
+            var newPlayer = cc.instantiate(this.playerPrefab);
+            this.node.addChild(newPlayer);
+            var playerControllerScript = newPlayer.getComponent(PlayerController_1.PlayerController);
+            playerControllerScript.weaponParent = this.node.getChildByName("weapon");
+            playerControllerScript.game = this;
+        }
     };
     MainScript.prototype.start = function () {
     };
@@ -79,17 +122,23 @@ var MainScript = /** @class */ (function (_super) {
         property(cc.Node)
     ], MainScript.prototype, "startScreen", void 0);
     __decorate([
+        property(cc.Node)
+    ], MainScript.prototype, "restartScreen", void 0);
+    __decorate([
         property(cc.Prefab)
     ], MainScript.prototype, "EnemyPrefab", void 0);
     __decorate([
-        property(cc.Node)
-    ], MainScript.prototype, "player", void 0);
+        property(cc.Prefab)
+    ], MainScript.prototype, "playerPrefab", void 0);
     __decorate([
         property(cc.Label)
     ], MainScript.prototype, "scoreDisplay", void 0);
     __decorate([
         property(cc.Label)
     ], MainScript.prototype, "highscoreDisplay", void 0);
+    __decorate([
+        property(LifeLineManager_1.default)
+    ], MainScript.prototype, "lifeLineManager", void 0);
     MainScript = __decorate([
         ccclass
     ], MainScript);

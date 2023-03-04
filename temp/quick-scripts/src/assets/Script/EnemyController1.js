@@ -35,6 +35,7 @@ var EnemyController1 = /** @class */ (function (_super) {
     function EnemyController1() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.game = null;
+        _this.deltaRotation = 0;
         return _this;
     }
     // LIFE-CYCLE CALLBACKS:
@@ -52,8 +53,8 @@ var EnemyController1 = /** @class */ (function (_super) {
     };
     EnemyController1.prototype.update = function (dt) {
         // move down and rotate positive
-        this.node.y -= dt * Math.random() * 100;
-        this.node.angle += dt * Math.random() * 50;
+        this.node.y -= dt * Math.random() * 500 * this.deltaRotation;
+        this.node.angle += dt * this.deltaRotation * 500;
     };
     EnemyController1 = __decorate([
         ccclass

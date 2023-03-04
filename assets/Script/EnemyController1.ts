@@ -12,6 +12,7 @@ export default class EnemyController1 extends cc.Component
 {
 
     game = null;
+    deltaRotation: number = 0;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -36,7 +37,7 @@ export default class EnemyController1 extends cc.Component
     update (dt) 
     {
         // move down and rotate positive
-        this.node.y -= dt * Math.random() * 100;
-        this.node.angle += dt * Math.random() * 50;
+        this.node.y -= dt * Math.random() * 500 * this.deltaRotation;
+        this.node.angle += dt * this.deltaRotation * 500;
     }
 }

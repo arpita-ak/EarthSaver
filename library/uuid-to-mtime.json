@@ -495,8 +495,8 @@
     "relativePath": "Texture"
   },
   "2d2f792f-a40c-49bb-a189-ed176a246e49": {
-    "asset": 1677914287139,
-    "meta": 1677914287152,
+    "asset": 1677933944246,
+    "meta": 1677933944261,
     "relativePath": "Scene\\helloworld.fire"
   },
   "a8027877-d8d6-4645-97a0-52d4a0123dba": {
@@ -579,24 +579,44 @@
     "meta": 1677911496406,
     "relativePath": "Texture\\player.png"
   },
-  "95ffe9f2-ba3e-4415-bbbb-c5fe15786170": {
-    "asset": 1677913676151,
-    "meta": 1677913731134,
-    "relativePath": "Script\\EnemyController1.ts"
-  },
-  "642f116c-10d8-4ed8-b82b-b4f23fafcedf": {
-    "asset": 1677913795075,
-    "meta": 1677913807189,
-    "relativePath": "Script\\PlayerController.ts"
-  },
   "4e2e1363-eaa2-40d6-86e3-6e25fec04a3b": {
     "asset": 1677913790131,
     "meta": 1677913807200,
     "relativePath": "Script\\WeaponController1.ts"
   },
+  "5487ee89-3b88-45aa-ba04-dd7d14c48251": {
+    "asset": 1677933437345,
+    "meta": 1677933437356,
+    "relativePath": "Prefabs\\player.prefab"
+  },
+  "95ffe9f2-ba3e-4415-bbbb-c5fe15786170": {
+    "asset": 1677929556594,
+    "meta": 1677929558464,
+    "relativePath": "Script\\EnemyController1.ts"
+  },
+  "fc81ae3f-840e-4f72-9210-225fe8f03b43": {
+    "asset": 1677930963055,
+    "meta": 1677930963061,
+    "relativePath": "Prefabs\\playerLifelineIcon.prefab"
+  },
+  "a781e56b-a435-4753-9180-78174f808db8": {
+    "asset": 1677931927534,
+    "meta": 1677931936792,
+    "relativePath": "Script\\LifeLineManager.ts"
+  },
   "584ae38d-f320-4a56-83a5-7a2994a401e6": {
-    "asset": 1677914284098,
-    "meta": 1677914286021,
+    "asset": 1677931936204,
+    "meta": 1677931936826,
     "relativePath": "Script\\MainScript.ts"
+  },
+  "30c7f3e6-68c8-4fd4-907d-c915be47d983": {
+    "asset": 1677933316096,
+    "meta": 1677933318152,
+    "relativePath": "Texture\\singleColor - circle.png"
+  },
+  "642f116c-10d8-4ed8-b82b-b4f23fafcedf": {
+    "asset": 1677933841673,
+    "meta": 1677933842931,
+    "relativePath": "Script\\PlayerController.ts"
   }
 }

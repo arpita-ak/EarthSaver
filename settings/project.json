@@ -6,11 +6,18 @@
     [
       false,
       false,
+      true,
       true
     ],
     [
       false,
       true,
+      false
+    ],
+    [
+      false,
+      true,
+      false,
       false
     ]
   ],
@@ -18,7 +25,8 @@
   "group-list": [
     "default",
     "enemy",
-    "weapon"
+    "weapon",
+    "player"
   ],
   "start-scene": "2d2f792f-a40c-49bb-a189-ed176a246e49",
   "design-resolution-width": 640,

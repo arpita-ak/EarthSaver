@@ -1,6 +1,6 @@
 "use strict";
-cc._RF.push(module, '95ffenyuj5EFbu7xf4VeGFw', 'EnemyController1');
-// Script/EnemyController1.ts
+cc._RF.push(module, 'a781eVrpDVHU5GAeBdPgI24', 'LifeLineManager');
+// Script/LifeLineManager.ts
 
 "use strict";
 // Learn TypeScript:
@@ -30,37 +30,49 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var _a = cc._decorator, ccclass = _a.ccclass, property = _a.property;
-var EnemyController1 = /** @class */ (function (_super) {
-    __extends(EnemyController1, _super);
-    function EnemyController1() {
+var LifeLineManager = /** @class */ (function (_super) {
+    __extends(LifeLineManager, _super);
+    function LifeLineManager() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.game = null;
-        _this.deltaRotation = 0;
+        _this.CurrentLifelines = 0;
+        _this.playerIconPrefab = null;
         return _this;
+        // update (dt) {}
     }
     // LIFE-CYCLE CALLBACKS:
-    EnemyController1.prototype.onLoad = function () {
-        //this.game = this.node.parent.getComponent('player');
-        var manager = cc.director.getCollisionManager();
-        manager.enabled = true;
+    LifeLineManager.prototype.onLoad = function () {
+        this.CurrentLifelines = 3;
+        for (var i = 0; i < this.CurrentLifelines; i++) {
+            var newIcon = cc.instantiate(this.playerIconPrefab);
+            this.node.addChild(newIcon);
+        }
     };
-    EnemyController1.prototype.onCollisionEnter = function (other, self) {
-        var _this = this;
-        cc.tween(this.node).to(0.2, ({ scale: 0 })).call(function () { _this.node.destroy(); }).start();
-        this.game.gainScore();
+    LifeLineManager.prototype.start = function () {
     };
-    EnemyController1.prototype.start = function () {
+    LifeLineManager.prototype.restart = function () {
+        if (this.CurrentLifelines == 0) {
+            this.CurrentLifelines = 3;
+            for (var i = 0; i < this.CurrentLifelines; i++) {
+                var newIcon = cc.instantiate(this.playerIconPrefab);
+                this.node.addChild(newIcon);
+            }
+        }
     };
-    EnemyController1.prototype.update = function (dt) {
-        // move down and rotate positive
-        this.node.y -= dt * Math.random() * 500 * this.deltaRotation;
-        this.node.angle += dt * this.deltaRotation * 500;
+    LifeLineManager.prototype.DecreaseLifeLine = function () {
+        if (this.CurrentLifelines) {
+            this.CurrentLifelines -= 1;
+            this.node.children[0].destroy();
+            this.node.getComponent(cc.Layout).updateLayout();
+        }
     };
-    EnemyController1 = __decorate([
+    __decorate([
+        property(cc.Prefab)
+    ], LifeLineManager.prototype, "playerIconPrefab", void 0);
+    LifeLineManager = __decorate([
         ccclass
-    ], EnemyController1);
-    return EnemyController1;
+    ], LifeLineManager);
+    return LifeLineManager;
 }(cc.Component));
-exports.default = EnemyController1;
+exports.default = LifeLineManager;
 
 cc._RF.pop();

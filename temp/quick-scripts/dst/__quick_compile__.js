@@ -1,6 +1,6 @@
 
 (function () {
-var scripts = [{"deps":{"./assets/Script/EnemyController1":1,"./assets/Script/MainScript":2,"./assets/Script/PlayerController":3,"./assets/Script/WeaponController1":4},"path":"preview-scripts/__qc_index__.js"},{"deps":{},"path":"preview-scripts/assets/Script/EnemyController1.js"},{"deps":{},"path":"preview-scripts/assets/Script/MainScript.js"},{"deps":{},"path":"preview-scripts/assets/Script/PlayerController.js"},{"deps":{},"path":"preview-scripts/assets/Script/WeaponController1.js"}];
+var scripts = [{"deps":{"./assets/Script/EnemyController1":2,"./assets/Script/PlayerController":3,"./assets/Script/MainScript":4,"./assets/Script/LifeLineManager":6,"./assets/Script/WeaponController1":1},"path":"preview-scripts/__qc_index__.js"},{"deps":{},"path":"preview-scripts/assets/Script/WeaponController1.js"},{"deps":{},"path":"preview-scripts/assets/Script/EnemyController1.js"},{"deps":{},"path":"preview-scripts/assets/Script/PlayerController.js"},{"deps":{"./LifeLineManager":6,"./PlayerController":3},"path":"preview-scripts/assets/Script/MainScript.js"},{"deps":{},"path":"preview-scripts/assets/Script/NewScript.js"},{"deps":{},"path":"preview-scripts/assets/Script/LifeLineManager.js"}];
 var entries = ["preview-scripts/__qc_index__.js"];
 var bundleScript = 'preview-scripts/__qc_bundle__.js';
 

@@ -10,10 +10,11 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export class PlayerController extends cc.Component {
 
-    @property(cc.Node)
-    gameNode: cc.Node = null;
+    //prefab cannot take references from scene nodes
+    //@property(cc.Node)
+    game = null;
 
-    @property(cc.Node)
+    //@property(cc.Node)
     weaponParent: cc.Node = null;
 
     @property(cc.Prefab)
@@ -24,10 +25,33 @@ export class PlayerController extends cc.Component {
 
     onLoad()
     {
+        // disable collider and enable green highlight indicating player is safe
+        this.EnableCollisionManager(false, true);
+
+        cc.tween(this.node)
+        .sequence(
+            cc.tween(this.node).to(0.5, ({opacity: 0})), 
+            cc.tween(this.node).to(0.5, ({opacity: 255})))
+        .repeat(3)
+        .start();
+
+        this.scheduleOnce(()=>{
+            // enable collider and disable green highlight indicating player is not protected and ready to fight
+            this.EnableCollisionManager(true, false)
+        }, 4);
+
         this.node.on(cc.Node.EventType.TOUCH_START, this.OnTouchStart, this);
         this.node.on(cc.Node.EventType.TOUCH_MOVE, this.OnTouchMove, this);
         this.node.on(cc.Node.EventType.TOUCH_END, this.OnTouchEnd, this);
         this.node.on(cc.Node.EventType.TOUCH_CANCEL, this.OnTouchEnd, this);
+        
+    }
+    
+    EnableCollisionManager(flag:boolean, protect:boolean)
+    {
+        let manager = this.node.getComponent(cc.BoxCollider);
+        manager.enabled = flag;
+        this.node.children[0].active = protect;
     }
 
     OnTouchStart(_event: cc.Event.EventTouch)
@@ -67,6 +91,20 @@ export class PlayerController extends cc.Component {
         newfire.setPosition(pos);
         newfire.angle = 0;
         //audioEngine.playEffect(this.laserAudio, false); // Shoot audio
+    }
+
+    onCollisionEnter(other, self) 
+    {
+        // disable collider to avoid any further collisions 
+        // disable green highlight indicating player is not protected and is dying 
+        this.EnableCollisionManager(false, false);
+
+        cc.tween(this.node).to(0.2, ({scale:0})).call(()=>{
+            this.node.destroy();
+            this.game.OnPlayerDead();
+        }).start();
+
+        console.log("Player is dead");
     }
 
     start() 

@@ -34,7 +34,10 @@ var PlayerController = /** @class */ (function (_super) {
     __extends(PlayerController, _super);
     function PlayerController() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.gameNode = null;
+        //prefab cannot take references from scene nodes
+        //@property(cc.Node)
+        _this.game = null;
+        //@property(cc.Node)
         _this.weaponParent = null;
         _this.weapon1 = null;
         _this.offsetPos = cc.v3(0, 0, 0);
@@ -42,10 +45,26 @@ var PlayerController = /** @class */ (function (_super) {
         return _this;
     }
     PlayerController.prototype.onLoad = function () {
+        var _this = this;
+        // disable collider and enable green highlight indicating player is safe
+        this.EnableCollisionManager(false, true);
+        cc.tween(this.node)
+            .sequence(cc.tween(this.node).to(0.5, ({ opacity: 0 })), cc.tween(this.node).to(0.5, ({ opacity: 255 })))
+            .repeat(3)
+            .start();
+        this.scheduleOnce(function () {
+            // enable collider and disable green highlight indicating player is not protected and ready to fight
+            _this.EnableCollisionManager(true, false);
+        }, 4);
         this.node.on(cc.Node.EventType.TOUCH_START, this.OnTouchStart, this);
         this.node.on(cc.Node.EventType.TOUCH_MOVE, this.OnTouchMove, this);
         this.node.on(cc.Node.EventType.TOUCH_END, this.OnTouchEnd, this);
         this.node.on(cc.Node.EventType.TOUCH_CANCEL, this.OnTouchEnd, this);
+    };
+    PlayerController.prototype.EnableCollisionManager = function (flag, protect) {
+        var manager = this.node.getComponent(cc.BoxCollider);
+        manager.enabled = flag;
+        this.node.children[0].active = protect;
     };
     PlayerController.prototype.OnTouchStart = function (_event) {
         //console.log('Start');
@@ -75,16 +94,21 @@ var PlayerController = /** @class */ (function (_super) {
         newfire.angle = 0;
         //audioEngine.playEffect(this.laserAudio, false); // Shoot audio
     };
+    PlayerController.prototype.onCollisionEnter = function (other, self) {
+        var _this = this;
+        // disable collider to avoid any further collisions 
+        // disable green highlight indicating player is not protected and is dying 
+        this.EnableCollisionManager(false, false);
+        cc.tween(this.node).to(0.2, ({ scale: 0 })).call(function () {
+            _this.node.destroy();
+            _this.game.OnPlayerDead();
+        }).start();
+        console.log("Player is dead");
+    };
     PlayerController.prototype.start = function () {
     };
     PlayerController.prototype.update = function (dt) {
     };
-    __decorate([
-        property(cc.Node)
-    ], PlayerController.prototype, "gameNode", void 0);
-    __decorate([
-        property(cc.Node)
-    ], PlayerController.prototype, "weaponParent", void 0);
     __decorate([
         property(cc.Prefab)
     ], PlayerController.prototype, "weapon1", void 0);

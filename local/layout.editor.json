@@ -18,7 +18,7 @@
                 "children": [
                   "hierarchy"
                 ],
-                "height": 346.5874938964844,
+                "height": 371.1125183105469,
                 "type": "panel",
                 "width": 245.0625
               },
@@ -27,7 +27,7 @@
                 "children": [
                   "assets"
                 ],
-                "height": 350.6000061035156,
+                "height": 326.0874938964844,
                 "type": "panel",
                 "width": 245.0625
               }
@@ -77,8 +77,19 @@
         ],
         "type": "dock-h"
       },
-      "panels": []
-    }
+      "panels": [
+        "hierarchy",
+        "assets",
+        "scene",
+        "console",
+        "timeline",
+        "game-window",
+        "inspector",
+        "node-library",
+        "cocos-services"
+      ]
+    },
+    "window-1677933997512": {}
   },
   "panels": {
     "project-settings": {
