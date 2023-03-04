@@ -38,10 +38,9 @@ var MainScript = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.startScreen = null;
         _this.restartScreen = null;
-        _this.EnemyPrefab = null;
-        _this.EnemyPrefab2 = null;
-        _this.EnemyPrefab3 = null;
+        _this.EnemyPrefab = [];
         _this.playerPrefab = null;
+        _this.weaponPrefab = [];
         _this.scoreDisplay = null;
         _this.highscoreDisplay = null;
         _this.lifeLineManager = null;
@@ -85,17 +84,22 @@ var MainScript = /** @class */ (function (_super) {
         this.onVolumeToggleClicked();
     };
     MainScript.prototype.spawnNewRound = function () {
-        var newRound = cc.instantiate(this.EnemyPrefab);
+        var newRound = cc.instantiate(this.EnemyPrefab[0]);
         var enemyControllerScript = newRound.getComponent('EnemyController1');
         // different enemy who needs 3 fire to die
         if (this.score % 5 == 0 && this.score != 0) {
-            newRound = cc.instantiate(this.EnemyPrefab2);
+            newRound = cc.instantiate(this.EnemyPrefab[1]);
             enemyControllerScript = newRound.getComponent('EnemyController2');
         }
         // different enemy who needs 5 fire to die AND EXPANDS
         if (this.score % 5 == 0 && this.score > 30) {
-            newRound = cc.instantiate(this.EnemyPrefab3);
+            newRound = cc.instantiate(this.EnemyPrefab[2]);
             enemyControllerScript = newRound.getComponent('EnemyController3');
+        }
+        // different enemy who needs 5 fire to die AND EXPANDS
+        if (this.score % 3 == 0 && this.score > 20) {
+            newRound = cc.instantiate(this.EnemyPrefab[3]);
+            enemyControllerScript = newRound.getComponent('EnemyController4');
         }
         this.node.getChildByName("enemies").addChild(newRound);
         newRound.setPosition(this.getNewEnemyPosition());
@@ -114,6 +118,14 @@ var MainScript = /** @class */ (function (_super) {
             this.currentPlayerScript.node.children[0].color = cc.Color.BLUE;
             cc.tween(this.currentPlayerScript.node.children[0]).to(5, ({ opacity: 0 })).start();
             this.scheduleOnce(function () { _this.currentPlayerScript.EnableCollisionManager(true, false); }, 10);
+        }
+        if (value == 3) {
+            this.currentPlayerScript.weapon1 = this.weaponPrefab[1];
+            this.scheduleOnce(function () { _this.currentPlayerScript.weapon1 = _this.weaponPrefab[0]; }, 10);
+        }
+        if (value == 10) {
+            this.currentPlayerScript.weapon1 = this.weaponPrefab[2];
+            this.scheduleOnce(function () { _this.currentPlayerScript.weapon1 = _this.weaponPrefab[0]; }, 10);
         }
     };
     MainScript.prototype.getNewEnemyPosition = function () {
@@ -169,13 +181,10 @@ var MainScript = /** @class */ (function (_super) {
     ], MainScript.prototype, "EnemyPrefab", void 0);
     __decorate([
         property(cc.Prefab)
-    ], MainScript.prototype, "EnemyPrefab2", void 0);
-    __decorate([
-        property(cc.Prefab)
-    ], MainScript.prototype, "EnemyPrefab3", void 0);
-    __decorate([
-        property(cc.Prefab)
     ], MainScript.prototype, "playerPrefab", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], MainScript.prototype, "weaponPrefab", void 0);
     __decorate([
         property(cc.Label)
     ], MainScript.prototype, "scoreDisplay", void 0);

@@ -21,16 +21,13 @@ export default class MainScript extends cc.Component {
     restartScreen: cc.Node = null;
 
     @property(cc.Prefab)
-    EnemyPrefab: cc.Prefab = null;
-
-    @property(cc.Prefab)
-    EnemyPrefab2: cc.Prefab = null;
-
-    @property(cc.Prefab)
-    EnemyPrefab3: cc.Prefab = null;
+    EnemyPrefab: cc.Prefab[] = [];
 
     @property(cc.Prefab)
     playerPrefab : cc.Prefab = null;
+
+    @property(cc.Prefab)
+    weaponPrefab: cc.Prefab[] = [];
 
     @property(cc.Label)
     scoreDisplay: cc.Label = null;
@@ -99,21 +96,28 @@ export default class MainScript extends cc.Component {
 
     spawnNewRound()
     {
-        let newRound = cc.instantiate(this.EnemyPrefab);
+        let newRound = cc.instantiate(this.EnemyPrefab[0]);
         let enemyControllerScript = newRound.getComponent('EnemyController1')
 
         // different enemy who needs 3 fire to die
         if (this.score%5 == 0 && this.score != 0) 
         {
-            newRound = cc.instantiate(this.EnemyPrefab2);
+            newRound = cc.instantiate(this.EnemyPrefab[1]);
             enemyControllerScript = newRound.getComponent('EnemyController2')
         }
 
         // different enemy who needs 5 fire to die AND EXPANDS
         if (this.score%5 == 0 && this.score > 30) 
         {
-            newRound = cc.instantiate(this.EnemyPrefab3);
+            newRound = cc.instantiate(this.EnemyPrefab[2]);
             enemyControllerScript = newRound.getComponent('EnemyController3')
+        }
+
+        // different enemy who needs 5 fire to die AND EXPANDS
+        if (this.score%3 == 0 && this.score > 20) 
+        {
+            newRound = cc.instantiate(this.EnemyPrefab[3]);
+            enemyControllerScript = newRound.getComponent('EnemyController4')
         }
 
         this.node.getChildByName("enemies").addChild(newRound);
@@ -137,6 +141,18 @@ export default class MainScript extends cc.Component {
             this.currentPlayerScript.node.children[0].color = cc.Color.BLUE;
             cc.tween(this.currentPlayerScript.node.children[0]).to(5, ({opacity:0})).start();
             this.scheduleOnce(()=>{this.currentPlayerScript.EnableCollisionManager(true, false)}, 10);
+        }
+
+        if (value == 3)
+        {
+            this.currentPlayerScript.weapon1 = this.weaponPrefab[1];
+            this.scheduleOnce(()=>{this.currentPlayerScript.weapon1 = this.weaponPrefab[0];}, 10);
+        }
+        
+        if (value == 10)
+        {
+            this.currentPlayerScript.weapon1 = this.weaponPrefab[2];
+            this.scheduleOnce(()=>{this.currentPlayerScript.weapon1 = this.weaponPrefab[0];}, 10);
         }
     }
 

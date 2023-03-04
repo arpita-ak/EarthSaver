@@ -64,6 +64,8 @@ var PlayerController = /** @class */ (function (_super) {
         this.node.on(cc.Node.EventType.TOUCH_CANCEL, this.OnTouchEnd, this);
     };
     PlayerController.prototype.EnableCollisionManager = function (flag, protect) {
+        if (!this.node)
+            return;
         var manager = this.node.getComponent(cc.BoxCollider);
         manager.enabled = flag;
         this.node.children[0].active = protect;

@@ -55,6 +55,8 @@ export class PlayerController extends cc.Component {
     
     EnableCollisionManager(flag:boolean, protect:boolean)
     {
+        if(!this.node)
+            return
         let manager = this.node.getComponent(cc.BoxCollider);
         manager.enabled = flag;
         this.node.children[0].active = protect;
