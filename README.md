@@ -26,7 +26,7 @@ The steps taken in process of development:
 future features:
 + better asthetics: Different avatars for player, bg, all UI, smooth animations
 + better and creative storyline
-+ more variety weapons: a bomb that destorys all the enemies at once, auto-emitting bullets, multiple diractioned bullets, an aim for targeted killing 
++ more variety weapons: a bomb that destroys all the enemies at once, auto-emitting bullets, multiple directioned bullets, an aim for targeted killing 
 + distinct level design
 
 
