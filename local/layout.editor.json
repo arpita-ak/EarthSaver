@@ -88,7 +88,8 @@
         "node-library",
         "cocos-services"
       ]
-    }
+    },
+    "window-1677947298381": {}
   },
   "panels": {
     "project-settings": {

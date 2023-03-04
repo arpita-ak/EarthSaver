@@ -480,17 +480,17 @@
     "relativePath": "model\\primitives.fbx"
   },
   "29f52784-2fca-467b-92e7-8fd9ef8c57b7": {
-    "asset": 1677867651167,
+    "asset": 1677941354862,
     "meta": 1629975690777,
     "relativePath": "Scene"
   },
   "4734c20c-0db8-4eb2-92ea-e692f4d70934": {
-    "asset": 1677936095836,
+    "asset": 1677945818765,
     "meta": 1629975690778,
     "relativePath": "Script"
   },
   "7b81d4e8-ec84-4716-968d-500ac1d78a54": {
-    "asset": 1677933318127,
+    "asset": 1677938960317,
     "meta": 1629975690778,
     "relativePath": "Texture"
   },
@@ -550,7 +550,7 @@
     "relativePath": "Texture\\bg.jpg"
   },
   "cba78d39-86d5-4fa1-b585-9c7e85b53066": {
-    "asset": 1677930963061,
+    "asset": 1677945327234,
     "meta": 1677870994738,
     "relativePath": "Prefabs"
   },
@@ -600,7 +600,7 @@
     "relativePath": "Script\\LifeLineManager.ts"
   },
   "fa519902-4a40-43e9-9cf3-36e1f0ea9a78": {
-    "asset": 1677937249604,
+    "asset": 1677939909117,
     "meta": 1677937249605,
     "relativePath": "audios"
   },
@@ -665,8 +665,8 @@
     "relativePath": "Script\\EnemyController3.ts"
   },
   "2d2f792f-a40c-49bb-a189-ed176a246e49": {
-    "asset": 1677946905879,
-    "meta": 1677946905891,
+    "asset": 1677947348472,
+    "meta": 1677947348485,
     "relativePath": "Scene\\EarthSaver.fire"
   },
   "aa3c2636-6e68-40ac-857f-105fe9bbe314": {
