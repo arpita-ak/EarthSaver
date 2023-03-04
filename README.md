@@ -12,6 +12,7 @@ The player can select to restart the game to try to beat their previous high sco
 You are permitted to send us notes about any changes in the scope, the solution you took,  problems you encountered and future solutions you might take given more time at the same  time as sending the execution notes. 
 
 The steps taken in process of development:
++ all steps done keeping widgeting in mind, to fit screen
 + player movement using touch in mobile device
 + distinguishing between touch for movement of player and shooting bullet
 + player, bullets, enemies, and their collision 
