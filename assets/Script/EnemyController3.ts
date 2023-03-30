@@ -61,7 +61,7 @@ export default class EnemyController1 extends cc.Component
     update (dt) 
     {
         // move down and rotate positive
-        this.node.y -= dt * Math.random() * 600 * this.deltaRotation;
-        this.node.angle += dt * this.deltaRotation * 500;
+        this.node.y -= dt * Math.random() * 300 * this.deltaRotation;
+        this.node.angle += dt * this.deltaRotation * 300;
     }
 }

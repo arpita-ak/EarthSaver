@@ -13,7 +13,7 @@ export default class EnemyController1 extends cc.Component
 
     game = null;
     deltaRotation: number = 0;
-    strength = 2;
+    strength = 10;
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -36,8 +36,17 @@ export default class EnemyController1 extends cc.Component
 
         switch(this.strength)
         {
-            case 0: enemyScale = 0.6; enemyOpacity = 0; break;
-            case 1: enemyScale = 0.5; enemyOpacity = 100; break;
+            case 0: enemyScale = 0.1; enemyOpacity = 50; break;
+            case 1: enemyScale = 0.1; enemyOpacity = 100; break;
+            case 2: enemyScale = 0.2; enemyOpacity = 125; break;
+            case 3: enemyScale = 0.3; enemyOpacity = 150; break;
+            case 4: enemyScale = 0.4; enemyOpacity = 100; break;
+            case 5: enemyScale = 0.5; enemyOpacity = 125; break;
+            case 6: enemyScale = 0.6; enemyOpacity = 150; break;
+            case 7: enemyScale = 0.7; enemyOpacity = 175; break;
+            case 8: enemyScale = 0.8; enemyOpacity = 200; break;
+            case 9: enemyScale = 0.9; enemyOpacity = 225; break;
+            case 10: enemyScale = 1; enemyOpacity = 255; break;
         }
 
         cc.tween(this.node).to(0.3, ({scale : enemyScale, opacity : enemyOpacity})).call(()=>{
@@ -58,7 +67,7 @@ export default class EnemyController1 extends cc.Component
     update (dt) 
     {
         // move down and rotate positive
-        this.node.y -= dt * Math.random() * 800 * this.deltaRotation;
+        this.node.y -= dt * Math.random() * 100 * this.deltaRotation;
         this.node.angle += dt * this.deltaRotation * 500;
     }
 }

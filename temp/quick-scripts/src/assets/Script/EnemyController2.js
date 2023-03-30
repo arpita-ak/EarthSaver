@@ -74,8 +74,8 @@ var EnemyController1 = /** @class */ (function (_super) {
     };
     EnemyController1.prototype.update = function (dt) {
         // move down and rotate positive
-        this.node.y -= dt * Math.random() * 500 * this.deltaRotation;
-        this.node.angle += dt * this.deltaRotation * 500;
+        this.node.y -= dt * Math.random() * 200 * this.deltaRotation;
+        this.node.angle += dt * this.deltaRotation * 200;
     };
     EnemyController1 = __decorate([
         ccclass

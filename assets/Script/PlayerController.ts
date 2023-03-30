@@ -28,11 +28,13 @@ export class PlayerController extends cc.Component {
 
     protected offsetPos: cc.Vec3 = cc.v3(0, 0, 0);
     protected delta: number = 0;
+    protected count: number = 0;
 
     onLoad()
     {
         // disable collider and enable green highlight indicating player is safe
         this.EnableCollisionManager(false, true);
+        this.EnableAutomaticShots(true);
 
         cc.tween(this.node)
         .sequence(
@@ -83,8 +85,14 @@ export class PlayerController extends cc.Component {
         if (this.delta == 0)
         {
             //console.log("shoot");
-            this.bulletfire()
+            //this.bulletfire()
         }
+    }
+
+    EnableAutomaticShots(enable : boolean)
+    {
+        if (enable) this.schedule(this.bulletfire, 0.2, cc.macro.REPEAT_FOREVER, 0);
+        else this.unschedule(this.bulletfire);
     }
 
     bulletfire()
@@ -109,12 +117,17 @@ export class PlayerController extends cc.Component {
         // disable green highlight indicating player is not protected and is dying 
         this.EnableCollisionManager(false, false);
 
+
+        this.node.destroy();
+        this.count += 1;
+        console.log("dead: ", this.count);
+        this.game.OnPlayerDead();
+        
         cc.tween(this.node).to(0.2, ({scale:0})).call(()=>{
-            this.node.destroy();
-            this.game.OnPlayerDead();
+            
         }).start();
 
-        console.log("Player is dead");
+        console.log("Player is dead: ", other);
         cc.audioEngine.playEffect(this.playerDeadAudio, false);
     }
 

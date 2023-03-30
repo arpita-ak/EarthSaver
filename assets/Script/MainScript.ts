@@ -15,6 +15,9 @@ const {ccclass, property} = cc._decorator;
 export default class MainScript extends cc.Component {
 
     @property(cc.Node)
+    canvas: cc.Node = null;
+
+    @property(cc.Node)
     startScreen: cc.Node = null;
 
     @property(cc.Node)
@@ -85,7 +88,7 @@ export default class MainScript extends cc.Component {
         this.currentPlayerScript.game = this;
 
         // generate 2 enemies every second
-        this.schedule(this.spawnNewRound, 0.5, cc.macro.REPEAT_FOREVER, 0);
+        this.schedule(this.spawnNewRound, 10, cc.macro.REPEAT_FOREVER, 0);
 
         // start music
         cc.audioEngine.playMusic(this.bgmAudio, true);
@@ -113,11 +116,25 @@ export default class MainScript extends cc.Component {
             enemyControllerScript = newRound.getComponent('EnemyController3')
         }
 
-        // different enemy who needs 5 fire to die AND EXPANDS
+        // different enemy who needs 10 fire to die AND EXPANDS
         if (this.score%3 == 0 && this.score > 20) 
         {
             newRound = cc.instantiate(this.EnemyPrefab[3]);
             enemyControllerScript = newRound.getComponent('EnemyController4')
+        }
+
+        // different enemy who needs 15 fire to die who fades
+        if (this.score%4 == 0 && this.score > 0) 
+        {
+            newRound = cc.instantiate(this.EnemyPrefab[4]);
+            enemyControllerScript = newRound.getComponent('EnemyController5')
+        }
+
+        // Enemy 6 who needs 50 fire to die and who fires enemy 1
+        if (this.score == 0 ) 
+        {
+            newRound = cc.instantiate(this.EnemyPrefab[6]);
+            enemyControllerScript = newRound.getComponent('EnemyController7')
         }
 
         this.node.getChildByName("enemies").addChild(newRound);
@@ -158,8 +175,8 @@ export default class MainScript extends cc.Component {
 
     getNewEnemyPosition() 
     {
-        var randX = Math.random() * Math.random() *2* (this.node.width/2 - 20)-250;
-        var randY = Math.random() * Math.random() *5* (this.node.height/2 - 200)+ 200;
+        var randX = (Math.random() - Math.random()) * (this.canvas.width/2);
+        var randY = (Math.random()) * (this.canvas.height/2);
         //console.log(randX,randY);
         return cc.v2(randX, randY);
     }

@@ -36,7 +36,7 @@ var EnemyController1 = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.game = null;
         _this.deltaRotation = 0;
-        _this.strength = 2;
+        _this.strength = 10;
         return _this;
     }
     // LIFE-CYCLE CALLBACKS:
@@ -55,12 +55,48 @@ var EnemyController1 = /** @class */ (function (_super) {
         var enemyOpacity = 255;
         switch (this.strength) {
             case 0:
-                enemyScale = 0.6;
-                enemyOpacity = 0;
+                enemyScale = 0.1;
+                enemyOpacity = 50;
                 break;
             case 1:
-                enemyScale = 0.5;
+                enemyScale = 0.1;
                 enemyOpacity = 100;
+                break;
+            case 2:
+                enemyScale = 0.2;
+                enemyOpacity = 125;
+                break;
+            case 3:
+                enemyScale = 0.3;
+                enemyOpacity = 150;
+                break;
+            case 4:
+                enemyScale = 0.4;
+                enemyOpacity = 100;
+                break;
+            case 5:
+                enemyScale = 0.5;
+                enemyOpacity = 125;
+                break;
+            case 6:
+                enemyScale = 0.6;
+                enemyOpacity = 150;
+                break;
+            case 7:
+                enemyScale = 0.7;
+                enemyOpacity = 175;
+                break;
+            case 8:
+                enemyScale = 0.8;
+                enemyOpacity = 200;
+                break;
+            case 9:
+                enemyScale = 0.9;
+                enemyOpacity = 225;
+                break;
+            case 10:
+                enemyScale = 1;
+                enemyOpacity = 255;
                 break;
         }
         cc.tween(this.node).to(0.3, ({ scale: enemyScale, opacity: enemyOpacity })).call(function () {
@@ -74,7 +110,7 @@ var EnemyController1 = /** @class */ (function (_super) {
     };
     EnemyController1.prototype.update = function (dt) {
         // move down and rotate positive
-        this.node.y -= dt * Math.random() * 800 * this.deltaRotation;
+        this.node.y -= dt * Math.random() * 100 * this.deltaRotation;
         this.node.angle += dt * this.deltaRotation * 500;
     };
     EnemyController1 = __decorate([

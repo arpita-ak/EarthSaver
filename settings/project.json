@@ -12,12 +12,22 @@
     [
       false,
       true,
-      false
+      false,
+      null,
+      true
     ],
     [
       false,
       true,
       false,
+      false,
+      true
+    ],
+    [
+      false,
+      false,
+      true,
+      true,
       false
     ]
   ],
@@ -26,7 +36,8 @@
     "default",
     "enemy",
     "weapon",
-    "player"
+    "player",
+    "enemy fire"
   ],
   "start-scene": "2d2f792f-a40c-49bb-a189-ed176a246e49",
   "design-resolution-width": 640,

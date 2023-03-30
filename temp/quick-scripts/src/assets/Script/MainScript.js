@@ -36,6 +36,7 @@ var MainScript = /** @class */ (function (_super) {
     __extends(MainScript, _super);
     function MainScript() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.canvas = null;
         _this.startScreen = null;
         _this.restartScreen = null;
         _this.EnemyPrefab = [];
@@ -77,7 +78,7 @@ var MainScript = /** @class */ (function (_super) {
         this.currentPlayerScript.weaponParent = this.node.getChildByName("weapon");
         this.currentPlayerScript.game = this;
         // generate 2 enemies every second
-        this.schedule(this.spawnNewRound, 0.5, cc.macro.REPEAT_FOREVER, 0);
+        this.schedule(this.spawnNewRound, 10, cc.macro.REPEAT_FOREVER, 0);
         // start music
         cc.audioEngine.playMusic(this.bgmAudio, true);
         cc.audioEngine.playEffect(this.clickAudio, false);
@@ -96,10 +97,20 @@ var MainScript = /** @class */ (function (_super) {
             newRound = cc.instantiate(this.EnemyPrefab[2]);
             enemyControllerScript = newRound.getComponent('EnemyController3');
         }
-        // different enemy who needs 5 fire to die AND EXPANDS
+        // different enemy who needs 10 fire to die AND EXPANDS
         if (this.score % 3 == 0 && this.score > 20) {
             newRound = cc.instantiate(this.EnemyPrefab[3]);
             enemyControllerScript = newRound.getComponent('EnemyController4');
+        }
+        // different enemy who needs 15 fire to die who fades
+        if (this.score % 4 == 0 && this.score > 0) {
+            newRound = cc.instantiate(this.EnemyPrefab[4]);
+            enemyControllerScript = newRound.getComponent('EnemyController5');
+        }
+        // Enemy 6 who needs 50 fire to die and who fires enemy 1
+        if (this.score == 0) {
+            newRound = cc.instantiate(this.EnemyPrefab[6]);
+            enemyControllerScript = newRound.getComponent('EnemyController7');
         }
         this.node.getChildByName("enemies").addChild(newRound);
         newRound.setPosition(this.getNewEnemyPosition());
@@ -129,8 +140,8 @@ var MainScript = /** @class */ (function (_super) {
         }
     };
     MainScript.prototype.getNewEnemyPosition = function () {
-        var randX = Math.random() * Math.random() * 2 * (this.node.width / 2 - 20) - 250;
-        var randY = Math.random() * Math.random() * 5 * (this.node.height / 2 - 200) + 200;
+        var randX = (Math.random() - Math.random()) * (this.canvas.width / 2);
+        var randY = (Math.random()) * (this.canvas.height / 2);
         //console.log(randX,randY);
         return cc.v2(randX, randY);
     };
@@ -170,6 +181,9 @@ var MainScript = /** @class */ (function (_super) {
             cc.audioEngine.setMusicVolume(1);
         }
     };
+    __decorate([
+        property(cc.Node)
+    ], MainScript.prototype, "canvas", void 0);
     __decorate([
         property(cc.Node)
     ], MainScript.prototype, "startScreen", void 0);
